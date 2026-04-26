@@ -17,6 +17,7 @@ import com.example.zensqlite.ui.screens.home.HomeScreen
 import com.example.zensqlite.ui.screens.product.ProductDetailScreen
 import com.example.zensqlite.ui.screens.product.ProductFormScreen
 import com.example.zensqlite.ui.screens.splash.SplashScreen
+import com.example.zensqlite.ui.screens.profile.ProfileScreen
 import com.example.zensqlite.ui.viewmodel.AuthViewModel
 import com.example.zensqlite.ui.viewmodel.ProductViewModel
 
@@ -25,6 +26,7 @@ sealed class Screen(val route: String) {
     data object Login : Screen("login")
     data object Register : Screen("register")
     data object Home : Screen("home")
+    data object Profile : Screen("profile")
     data object ProductForm : Screen("product_form?productId={productId}") {
         fun createRoute(productId: Long? = null): String {
             return if (productId != null) "product_form?productId=$productId"
@@ -140,6 +142,9 @@ fun AppNavigation() {
                 },
                 onNavigateToProductDetail = { productId ->
                     navController.navigate(Screen.ProductDetail.createRoute(productId))
+                },
+                onNavigateToProfile = {
+                    navController.navigate(Screen.Profile.route)
                 }
             )
         }
@@ -193,6 +198,28 @@ fun AppNavigation() {
                 },
                 onNavigateToEdit = { id ->
                     navController.navigate(Screen.ProductForm.createRoute(id))
+                }
+            )
+        }
+
+        composable(
+            route = Screen.Profile.route,
+            enterTransition = {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Left, tween(350)) + fadeIn(tween(350))
+            },
+            popExitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Right, tween(350)) + fadeOut(tween(350))
+            }
+        ) {
+            ProfileScreen(
+                authViewModel = authViewModel,
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToLogin = {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(0) { inclusive = true }
+                    }
                 }
             )
         }

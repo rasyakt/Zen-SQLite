@@ -33,7 +33,7 @@ import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Inventory
 import androidx.compose.material.icons.outlined.Inventory2
-import androidx.compose.material.icons.outlined.Logout
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Widgets
 import androidx.compose.material3.AlertDialog
@@ -90,7 +90,8 @@ fun HomeScreen(
     productViewModel: ProductViewModel,
     onNavigateToLogin: () -> Unit,
     onNavigateToAddProduct: () -> Unit,
-    onNavigateToProductDetail: (Long) -> Unit
+    onNavigateToProductDetail: (Long) -> Unit,
+    onNavigateToProfile: () -> Unit
 ) {
     val authState by authViewModel.uiState.collectAsState()
     val products by productViewModel.products.collectAsState()
@@ -102,49 +103,11 @@ fun HomeScreen(
     val selectedCategory by productViewModel.selectedCategory.collectAsState()
     val productUiState by productViewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
-
-    var showLogoutDialog by remember { mutableStateOf(false) }
-
     LaunchedEffect(productUiState.deleteSuccess) {
         if (productUiState.deleteSuccess) {
             snackbarHostState.showSnackbar(productUiState.successMessage ?: "Berhasil")
             productViewModel.resetDeleteSuccess()
         }
-    }
-
-    // Logout dialog
-    if (showLogoutDialog) {
-        AlertDialog(
-            onDismissRequest = { showLogoutDialog = false },
-            title = {
-                Text(
-                    "Konfirmasi Logout",
-                    fontWeight = FontWeight.SemiBold,
-                    color = DarkBlue
-                )
-            },
-            text = {
-                Text(
-                    "Apakah Anda yakin ingin keluar dari akun?",
-                    color = TextSecondary
-                )
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    showLogoutDialog = false
-                    authViewModel.logout()
-                    onNavigateToLogin()
-                }) {
-                    Text("Keluar", color = ErrorRed, fontWeight = FontWeight.SemiBold)
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showLogoutDialog = false }) {
-                    Text("Batal", color = TextSecondary)
-                }
-            },
-            shape = RoundedCornerShape(20.dp)
-        )
     }
 
     Scaffold(
@@ -199,7 +162,7 @@ fun HomeScreen(
                                 )
                             }
                             IconButton(
-                                onClick = { showLogoutDialog = true },
+                                onClick = onNavigateToProfile,
                                 modifier = Modifier
                                     .size(42.dp)
                                     .background(
@@ -208,8 +171,8 @@ fun HomeScreen(
                                     )
                             ) {
                                 Icon(
-                                    Icons.Outlined.Logout,
-                                    contentDescription = "Logout",
+                                    Icons.Outlined.Person,
+                                    contentDescription = "Profile",
                                     tint = Color.White,
                                     modifier = Modifier.size(20.dp)
                                 )
@@ -310,7 +273,8 @@ fun HomeScreen(
                                     Text(
                                         "Semua",
                                         fontSize = 13.sp,
-                                        fontWeight = if (selectedCategory == null) FontWeight.SemiBold else FontWeight.Normal
+                                        fontWeight = if (selectedCategory == null) FontWeight.SemiBold else FontWeight.Normal,
+                                        color = if (selectedCategory == null) Color.White else TextSecondary
                                     )
                                 },
                                 icon = {
@@ -343,7 +307,8 @@ fun HomeScreen(
                                     Text(
                                         category,
                                         fontSize = 13.sp,
-                                        fontWeight = if (selectedCategory == category) FontWeight.SemiBold else FontWeight.Normal
+                                        fontWeight = if (selectedCategory == category) FontWeight.SemiBold else FontWeight.Normal,
+                                        color = if (selectedCategory == category) Color.White else TextSecondary
                                     )
                                 },
                                 shape = RoundedCornerShape(10.dp),
