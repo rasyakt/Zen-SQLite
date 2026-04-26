@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ZenSQLite" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>m name="windowSplashScreenBackground">#1A1A1A</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.ZenSQLite</item>
+    </style>
+
+    <style name="Theme.ZenSQLite" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">#1A1A1A</item>
+    </style>
+</resources>
