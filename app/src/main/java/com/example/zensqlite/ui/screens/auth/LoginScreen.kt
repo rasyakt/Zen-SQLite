@@ -61,7 +61,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.zensqlite.ui.theme.DarkBlue
 import com.example.zensqlite.ui.theme.PrimaryBlue
-import com.example.zensqlite.ui.theme.PrimaryBlue
+import com.example.zensqlite.ui.theme.ErrorRed
+import com.example.zensqlite.ui.theme.SuccessGreen
 import com.example.zensqlite.ui.theme.TextSecondary
 import com.example.zensqlite.ui.viewmodel.AuthViewModel
 
@@ -92,7 +93,16 @@ fun LoginScreen(
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = {
+            SnackbarHost(snackbarHostState) { data ->
+                androidx.compose.material3.Snackbar(
+                    snackbarData = data,
+                    containerColor = ErrorRed,
+                    contentColor = Color.White,
+                    shape = RoundedCornerShape(12.dp)
+                )
+            }
+        }
     ) { paddingValues ->
         Box(
             modifier = Modifier

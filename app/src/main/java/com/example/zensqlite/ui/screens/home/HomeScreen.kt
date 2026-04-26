@@ -77,7 +77,9 @@ import com.example.zensqlite.ui.theme.AppBackground
 import com.example.zensqlite.ui.theme.ErrorRed
 import com.example.zensqlite.ui.theme.InfoBlue
 import com.example.zensqlite.ui.theme.SuccessGreen
+import com.example.zensqlite.ui.theme.SurfaceLight
 import com.example.zensqlite.ui.theme.TextSecondary
+import com.example.zensqlite.ui.theme.TextTertiary
 import com.example.zensqlite.ui.theme.WarningAmber
 import com.example.zensqlite.ui.viewmodel.AuthViewModel
 import com.example.zensqlite.ui.viewmodel.ProductViewModel
@@ -111,7 +113,16 @@ fun HomeScreen(
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = {
+            SnackbarHost(snackbarHostState) { data ->
+                androidx.compose.material3.Snackbar(
+                    snackbarData = data,
+                    containerColor = if (data.visuals.message.contains("berhasil", ignoreCase = true)) SuccessGreen else DarkBlue,
+                    contentColor = Color.White,
+                    shape = RoundedCornerShape(12.dp)
+                )
+            }
+        },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onNavigateToAddProduct,
@@ -426,10 +437,11 @@ private fun ProductCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 6.dp)
             .clickable { onClick() },
-        shape = RoundedCornerShape(14.dp),
+        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.5.dp)
     ) {
         Row(
             modifier = Modifier
@@ -440,9 +452,9 @@ private fun ProductCard(
             // Product Image
             Box(
                 modifier = Modifier
-                    .size(72.dp)
+                    .size(64.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(AppBackground),
+                    .background(SurfaceLight),
                 contentAlignment = Alignment.Center
             ) {
                 if (product.imagePath != null && File(product.imagePath).exists()) {
@@ -456,85 +468,78 @@ private fun ProductCard(
                     Icon(
                         Icons.Outlined.Inventory2,
                         contentDescription = null,
-                        tint = TextSecondary.copy(alpha = 0.4f),
-                        modifier = Modifier.size(32.dp)
+                        tint = TextTertiary,
+                        modifier = Modifier.size(28.dp)
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.width(14.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
             // Product Info
             Column(
                 modifier = Modifier.weight(1f)
             ) {
-                Text(
-                    text = product.name,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = DarkBlue,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Spacer(modifier = Modifier.height(2.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.Top
+                ) {
+                    Text(
+                        text = product.name,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = DarkBlue,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = CurrencyUtils.formatRupiah(product.price),
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = PrimaryBlue,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
+                
                 Text(
                     text = product.productCode,
                     fontSize = 12.sp,
                     color = TextSecondary
                 )
-                Spacer(modifier = Modifier.height(6.dp))
+                
+                Spacer(modifier = Modifier.height(8.dp))
+                
                 Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // Category Badge
+                    // Category
+                    Text(
+                        text = product.category,
+                        fontSize = 11.sp,
+                        color = TextSecondary,
+                        modifier = Modifier
+                            .background(SurfaceLight, RoundedCornerShape(4.dp))
+                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                    
+                    // Dot Separator
                     Box(
                         modifier = Modifier
-                            .background(
-                                LightBlue.copy(alpha = 0.5f),
-                                RoundedCornerShape(6.dp)
-                            )
-                            .padding(horizontal = 8.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = product.category,
-                            fontSize = 11.sp,
-                            color = DarkBlue,
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
-                    // Stock Badge
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                if (product.quantity > 10) SuccessGreen.copy(alpha = 0.1f)
-                                else if (product.quantity > 0) WarningAmber.copy(alpha = 0.1f)
-                                else ErrorRed.copy(alpha = 0.1f),
-                                RoundedCornerShape(6.dp)
-                            )
-                            .padding(horizontal = 8.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = "Stok: ${product.quantity}",
-                            fontSize = 11.sp,
-                            color = if (product.quantity > 10) SuccessGreen
-                            else if (product.quantity > 0) WarningAmber
-                            else ErrorRed,
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
+                            .size(3.dp)
+                            .background(TextTertiary, CircleShape)
+                    )
+                    
+                    // Stock
+                    Text(
+                        text = "${product.quantity} tersedia",
+                        fontSize = 11.sp,
+                        color = if (product.quantity > 0) SuccessGreen else ErrorRed,
+                        fontWeight = FontWeight.Medium
+                    )
                 }
-            }
-
-            // Price
-            Column(
-                horizontalAlignment = Alignment.End
-            ) {
-                Text(
-                    text = CurrencyUtils.formatRupiah(product.price),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = DarkBlue
-                )
             }
         }
     }

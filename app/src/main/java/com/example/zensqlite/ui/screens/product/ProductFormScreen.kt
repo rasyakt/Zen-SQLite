@@ -73,6 +73,8 @@ import coil.compose.AsyncImage
 import com.example.zensqlite.data.entity.ProductEntity
 import com.example.zensqlite.ui.theme.DarkBlue
 import com.example.zensqlite.ui.theme.PrimaryBlue
+import com.example.zensqlite.ui.theme.ErrorRed
+import com.example.zensqlite.ui.theme.SuccessGreen
 import com.example.zensqlite.ui.theme.AppBackground
 import com.example.zensqlite.ui.theme.TextSecondary
 import com.example.zensqlite.ui.viewmodel.ProductViewModel
@@ -284,7 +286,16 @@ fun ProductFormScreen(
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = {
+            SnackbarHost(snackbarHostState) { data ->
+                androidx.compose.material3.Snackbar(
+                    snackbarData = data,
+                    containerColor = if (data.visuals.message.contains("berhasil", ignoreCase = true)) SuccessGreen else ErrorRed,
+                    contentColor = Color.White,
+                    shape = RoundedCornerShape(12.dp)
+                )
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {

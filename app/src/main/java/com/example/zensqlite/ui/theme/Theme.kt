@@ -34,7 +34,9 @@ private val ZenColorScheme = lightColorScheme(
     surfaceVariant = SurfaceLight,
     onSurfaceVariant = TextSecondary,
     outline = TextTertiary,
-    outlineVariant = Color(0xFFE2E8F0)
+    outlineVariant = Color(0xFFE2E8F0),
+    inverseSurface = ErrorRed,
+    inverseOnSurface = Color.White
 )
 
 @Composable
