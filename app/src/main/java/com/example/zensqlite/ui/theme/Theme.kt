@@ -11,30 +11,30 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val ZenColorScheme = lightColorScheme(
-    primary = DarkNavy,
+    primary = PrimaryBlue,
     onPrimary = Color.White,
-    primaryContainer = DeepBlue,
-    onPrimaryContainer = Color.White,
-    secondary = RoyalBlue,
+    primaryContainer = LightBlue,
+    onPrimaryContainer = DarkBlue,
+    secondary = AccentBlue,
     onSecondary = Color.White,
-    secondaryContainer = RoyalBlue.copy(alpha = 0.1f),
-    onSecondaryContainer = RoyalBlue,
-    tertiary = CoralRed,
+    secondaryContainer = LightBlue,
+    onSecondaryContainer = PrimaryBlue,
+    tertiary = DarkBlue,
     onTertiary = Color.White,
-    tertiaryContainer = CoralRed.copy(alpha = 0.1f),
-    onTertiaryContainer = CoralRed,
+    tertiaryContainer = DarkBlue.copy(alpha = 0.1f),
+    onTertiaryContainer = DarkBlue,
     error = ErrorRed,
     onError = Color.White,
     errorContainer = ErrorRed.copy(alpha = 0.1f),
     onErrorContainer = ErrorRed,
-    background = LightBackground,
+    background = AppBackground,
     onBackground = TextPrimary,
     surface = CardWhite,
     onSurface = TextPrimary,
     surfaceVariant = SurfaceLight,
     onSurfaceVariant = TextSecondary,
     outline = TextTertiary,
-    outlineVariant = Color(0xFFE5E7EB)
+    outlineVariant = Color(0xFFE2E8F0)
 )
 
 @Composable
@@ -45,8 +45,8 @@ fun ZenSQLiteTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = DarkNavy.toArgb()
-            window.navigationBarColor = DarkNavy.toArgb()
+            window.statusBarColor = DarkBlue.toArgb()
+            window.navigationBarColor = DarkBlue.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }

@@ -2,33 +2,29 @@ package com.example.zensqlite.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Primary Palette
-val DarkNavy = Color(0xFF1A1A2E)
-val DeepBlue = Color(0xFF16213E)
-val RoyalBlue = Color(0xFF0F3460)
-val CoralRed = Color(0xFFE94560)
+// Primary Palette (Modern Blue Theme)
+val PrimaryBlue = Color(0xFF2563EB) // Blue 600
+val DarkBlue = Color(0xFF1E3A8A)    // Blue 900
+val LightBlue = Color(0xFFDBEAFE)   // Blue 100
+val AccentBlue = Color(0xFF3B82F6)  // Blue 500
 
 // Background
-val LightBackground = Color(0xFFF8F9FA)
+val AppBackground = Color(0xFFF8FAFC) // Slate 50
 val CardWhite = Color(0xFFFFFFFF)
-val SurfaceLight = Color(0xFFF1F3F5)
+val SurfaceLight = Color(0xFFF1F5F9)  // Slate 100
 
 // Text
-val TextPrimary = Color(0xFF1A1A1A)
-val TextSecondary = Color(0xFF6B7280)
-val TextTertiary = Color(0xFF9CA3AF)
+val TextPrimary = Color(0xFF0F172A)   // Slate 900
+val TextSecondary = Color(0xFF64748B) // Slate 500
+val TextTertiary = Color(0xFF94A3B8)  // Slate 400
 
-// Additional
+// Additional Semantic Colors
 val SuccessGreen = Color(0xFF10B981)
 val WarningAmber = Color(0xFFF59E0B)
 val ErrorRed = Color(0xFFEF4444)
 val InfoBlue = Color(0xFF3B82F6)
 
-// Gradient colors
-val GradientStart = Color(0xFF1A1A2E)
-val GradientMid = Color(0xFF16213E)
-val GradientEnd = Color(0xFF0F3460)
 
 // Shimmer
-val ShimmerBase = Color(0xFFE5E7EB)
-val ShimmerHighlight = Color(0xFFF3F4F6)
+val ShimmerBase = Color(0xFFE2E8F0)
+val ShimmerHighlight = Color(0xFFF1F5F9)

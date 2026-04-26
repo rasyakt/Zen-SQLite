@@ -50,7 +50,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
@@ -60,11 +59,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.zensqlite.ui.theme.CoralRed
-import com.example.zensqlite.ui.theme.DarkNavy
-import com.example.zensqlite.ui.theme.GradientEnd
-import com.example.zensqlite.ui.theme.GradientMid
-import com.example.zensqlite.ui.theme.GradientStart
+import com.example.zensqlite.ui.theme.DarkBlue
+import com.example.zensqlite.ui.theme.PrimaryBlue
 import com.example.zensqlite.ui.theme.TextSecondary
 import com.example.zensqlite.ui.viewmodel.AuthViewModel
 
@@ -111,11 +107,7 @@ fun RegisterScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(280.dp)
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(GradientStart, GradientMid, GradientEnd)
-                        )
-                    )
+                    .background(color = PrimaryBlue)
             ) {
                 // Back Button
                 IconButton(
@@ -172,7 +164,7 @@ fun RegisterScreen(
                             text = "Registrasi",
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
-                            color = DarkNavy
+                            color = DarkBlue
                         )
 
                         Spacer(modifier = Modifier.height(24.dp))
@@ -192,10 +184,10 @@ fun RegisterScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = DarkNavy,
+                                focusedBorderColor = PrimaryBlue,
                                 unfocusedBorderColor = Color(0xFFE5E7EB),
-                                focusedLabelColor = DarkNavy,
-                                cursorColor = DarkNavy
+                                focusedLabelColor = PrimaryBlue,
+                                cursorColor = PrimaryBlue
                             ),
                             keyboardOptions = KeyboardOptions(
                                 imeAction = ImeAction.Next
@@ -223,10 +215,10 @@ fun RegisterScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = DarkNavy,
+                                focusedBorderColor = PrimaryBlue,
                                 unfocusedBorderColor = Color(0xFFE5E7EB),
-                                focusedLabelColor = DarkNavy,
-                                cursorColor = DarkNavy
+                                focusedLabelColor = PrimaryBlue,
+                                cursorColor = PrimaryBlue
                             ),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Email,
@@ -267,10 +259,10 @@ fun RegisterScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = DarkNavy,
+                                focusedBorderColor = PrimaryBlue,
                                 unfocusedBorderColor = Color(0xFFE5E7EB),
-                                focusedLabelColor = DarkNavy,
-                                cursorColor = DarkNavy
+                                focusedLabelColor = PrimaryBlue,
+                                cursorColor = PrimaryBlue
                             ),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Password,
@@ -311,10 +303,10 @@ fun RegisterScreen(
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
-                                focusedBorderColor = DarkNavy,
+                                focusedBorderColor = PrimaryBlue,
                                 unfocusedBorderColor = Color(0xFFE5E7EB),
-                                focusedLabelColor = DarkNavy,
-                                cursorColor = DarkNavy
+                                focusedLabelColor = PrimaryBlue,
+                                cursorColor = PrimaryBlue
                             ),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Password,
@@ -342,7 +334,7 @@ fun RegisterScreen(
                                 .height(54.dp),
                             shape = RoundedCornerShape(14.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = CoralRed
+                                containerColor = PrimaryBlue
                             ),
                             enabled = !uiState.isLoading
                         ) {
@@ -378,7 +370,7 @@ fun RegisterScreen(
                                 text = "Masuk",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold,
-                                color = CoralRed,
+                                color = PrimaryBlue,
                                 modifier = Modifier.clickable(
                                     indication = null,
                                     interactionSource = remember { MutableInteractionSource() }

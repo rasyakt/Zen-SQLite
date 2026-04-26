@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.zensqlite.navigation.AppNavigation
-import com.example.zensqlite.ui.theme.LightBackground
+import com.example.zensqlite.ui.theme.AppBackground
 import com.example.zensqlite.ui.theme.ZenSQLiteTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
             ZenSQLiteTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = LightBackground
+                    color = AppBackground
                 ) {
                     AppNavigation()
                 }

@@ -27,10 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.zensqlite.ui.theme.CoralRed
-import com.example.zensqlite.ui.theme.GradientEnd
-import com.example.zensqlite.ui.theme.GradientMid
-import com.example.zensqlite.ui.theme.GradientStart
+import com.example.zensqlite.ui.theme.PrimaryBlue
 import com.example.zensqlite.ui.viewmodel.AuthViewModel
 import kotlinx.coroutines.delay
 
@@ -76,11 +73,7 @@ fun SplashScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(GradientStart, GradientMid, GradientEnd)
-                )
-            ),
+            .background(color = PrimaryBlue),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -98,7 +91,7 @@ fun SplashScreen(
                 Icon(
                     imageVector = Icons.Outlined.Inventory2,
                     contentDescription = "App Logo",
-                    tint = CoralRed,
+                    tint = Color.White,
                     modifier = Modifier.size(64.dp)
                 )
             }
@@ -118,7 +111,7 @@ fun SplashScreen(
                 text = "SQLite",
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Light,
-                color = CoralRed,
+                color = Color.White.copy(alpha = 0.9f),
                 letterSpacing = 4.sp
             )
 
@@ -129,7 +122,7 @@ fun SplashScreen(
                 text = "Inventory Management System",
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Normal,
-                color = Color.White.copy(alpha = 0.6f),
+                color = Color.White.copy(alpha = 0.7f),
                 letterSpacing = 1.5.sp,
                 modifier = Modifier.alpha(subtitleAlpha.value)
             )

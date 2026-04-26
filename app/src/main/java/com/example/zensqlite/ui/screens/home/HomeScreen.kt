@@ -61,7 +61,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -71,14 +70,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.zensqlite.data.entity.ProductEntity
-import com.example.zensqlite.ui.theme.CoralRed
-import com.example.zensqlite.ui.theme.DarkNavy
-import com.example.zensqlite.ui.theme.GradientEnd
-import com.example.zensqlite.ui.theme.GradientMid
-import com.example.zensqlite.ui.theme.GradientStart
+import com.example.zensqlite.ui.theme.DarkBlue
+import com.example.zensqlite.ui.theme.PrimaryBlue
+import com.example.zensqlite.ui.theme.LightBlue
+import com.example.zensqlite.ui.theme.AppBackground
+import com.example.zensqlite.ui.theme.ErrorRed
 import com.example.zensqlite.ui.theme.InfoBlue
-import com.example.zensqlite.ui.theme.LightBackground
-import com.example.zensqlite.ui.theme.RoyalBlue
 import com.example.zensqlite.ui.theme.SuccessGreen
 import com.example.zensqlite.ui.theme.TextSecondary
 import com.example.zensqlite.ui.theme.WarningAmber
@@ -123,7 +120,7 @@ fun HomeScreen(
                 Text(
                     "Konfirmasi Logout",
                     fontWeight = FontWeight.SemiBold,
-                    color = DarkNavy
+                    color = DarkBlue
                 )
             },
             text = {
@@ -138,7 +135,7 @@ fun HomeScreen(
                     authViewModel.logout()
                     onNavigateToLogin()
                 }) {
-                    Text("Keluar", color = CoralRed, fontWeight = FontWeight.SemiBold)
+                    Text("Keluar", color = ErrorRed, fontWeight = FontWeight.SemiBold)
                 }
             },
             dismissButton = {
@@ -155,7 +152,7 @@ fun HomeScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onNavigateToAddProduct,
-                containerColor = CoralRed,
+                containerColor = PrimaryBlue,
                 contentColor = Color.White,
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -163,7 +160,7 @@ fun HomeScreen(
                 Icon(Icons.Default.Add, contentDescription = "Tambah Produk")
             }
         },
-        containerColor = LightBackground
+        containerColor = AppBackground
     ) { paddingValues ->
         LazyColumn(
             modifier = Modifier
@@ -177,9 +174,8 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(GradientStart, GradientMid, GradientEnd)
-                            )
+                            color = PrimaryBlue,
+                            shape = RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp)
                         )
                         .padding(horizontal = 20.dp, vertical = 24.dp)
                 ) {
@@ -290,11 +286,11 @@ fun HomeScreen(
                         .padding(horizontal = 16.dp, vertical = 12.dp),
                     shape = RoundedCornerShape(14.dp),
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = DarkNavy,
+                        focusedBorderColor = PrimaryBlue,
                         unfocusedBorderColor = Color(0xFFE5E7EB),
                         focusedContainerColor = Color.White,
                         unfocusedContainerColor = Color.White,
-                        cursorColor = DarkNavy
+                        cursorColor = PrimaryBlue
                     ),
                     singleLine = true
                 )
@@ -326,13 +322,13 @@ fun HomeScreen(
                                 },
                                 shape = RoundedCornerShape(10.dp),
                                 colors = SuggestionChipDefaults.suggestionChipColors(
-                                    containerColor = if (selectedCategory == null) DarkNavy else Color.White,
+                                    containerColor = if (selectedCategory == null) PrimaryBlue else Color.White,
                                     labelColor = if (selectedCategory == null) Color.White else TextSecondary,
                                     iconContentColor = if (selectedCategory == null) Color.White else TextSecondary
                                 ),
                                 border = SuggestionChipDefaults.suggestionChipBorder(
                                     enabled = true,
-                                    borderColor = if (selectedCategory == null) DarkNavy else Color(0xFFE5E7EB)
+                                    borderColor = if (selectedCategory == null) PrimaryBlue else Color(0xFFE5E7EB)
                                 )
                             )
                         }
@@ -352,12 +348,12 @@ fun HomeScreen(
                                 },
                                 shape = RoundedCornerShape(10.dp),
                                 colors = SuggestionChipDefaults.suggestionChipColors(
-                                    containerColor = if (selectedCategory == category) DarkNavy else Color.White,
+                                    containerColor = if (selectedCategory == category) PrimaryBlue else Color.White,
                                     labelColor = if (selectedCategory == category) Color.White else TextSecondary
                                 ),
                                 border = SuggestionChipDefaults.suggestionChipBorder(
                                     enabled = true,
-                                    borderColor = if (selectedCategory == category) DarkNavy else Color(0xFFE5E7EB)
+                                    borderColor = if (selectedCategory == category) PrimaryBlue else Color(0xFFE5E7EB)
                                 )
                             )
                         }
@@ -379,7 +375,7 @@ fun HomeScreen(
                         text = "Daftar Produk",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        color = DarkNavy
+                        color = DarkBlue
                     )
                     Text(
                         text = "${products.size} item",
@@ -485,7 +481,7 @@ private fun ProductCard(
                 modifier = Modifier
                     .size(72.dp)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(LightBackground),
+                    .background(AppBackground),
                 contentAlignment = Alignment.Center
             ) {
                 if (product.imagePath != null && File(product.imagePath).exists()) {
@@ -515,7 +511,7 @@ private fun ProductCard(
                     text = product.name,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = DarkNavy,
+                    color = DarkBlue,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -533,7 +529,7 @@ private fun ProductCard(
                     Box(
                         modifier = Modifier
                             .background(
-                                RoyalBlue.copy(alpha = 0.1f),
+                                LightBlue.copy(alpha = 0.5f),
                                 RoundedCornerShape(6.dp)
                             )
                             .padding(horizontal = 8.dp, vertical = 2.dp)
@@ -541,7 +537,7 @@ private fun ProductCard(
                         Text(
                             text = product.category,
                             fontSize = 11.sp,
-                            color = RoyalBlue,
+                            color = DarkBlue,
                             fontWeight = FontWeight.Medium
                         )
                     }
@@ -551,7 +547,7 @@ private fun ProductCard(
                             .background(
                                 if (product.quantity > 10) SuccessGreen.copy(alpha = 0.1f)
                                 else if (product.quantity > 0) WarningAmber.copy(alpha = 0.1f)
-                                else CoralRed.copy(alpha = 0.1f),
+                                else ErrorRed.copy(alpha = 0.1f),
                                 RoundedCornerShape(6.dp)
                             )
                             .padding(horizontal = 8.dp, vertical = 2.dp)
@@ -561,7 +557,7 @@ private fun ProductCard(
                             fontSize = 11.sp,
                             color = if (product.quantity > 10) SuccessGreen
                             else if (product.quantity > 0) WarningAmber
-                            else CoralRed,
+                            else ErrorRed,
                             fontWeight = FontWeight.Medium
                         )
                     }
@@ -576,7 +572,7 @@ private fun ProductCard(
                     text = CurrencyUtils.formatRupiah(product.price),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = DarkNavy
+                    color = DarkBlue
                 )
             }
         }
@@ -614,7 +610,7 @@ private fun EmptyState(
             },
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
-            color = DarkNavy.copy(alpha = 0.6f)
+            color = DarkBlue.copy(alpha = 0.6f)
         )
 
         Spacer(modifier = Modifier.height(8.dp))

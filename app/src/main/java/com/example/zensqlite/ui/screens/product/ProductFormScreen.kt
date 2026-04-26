@@ -71,9 +71,9 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import coil.compose.AsyncImage
 import com.example.zensqlite.data.entity.ProductEntity
-import com.example.zensqlite.ui.theme.CoralRed
-import com.example.zensqlite.ui.theme.DarkNavy
-import com.example.zensqlite.ui.theme.LightBackground
+import com.example.zensqlite.ui.theme.DarkBlue
+import com.example.zensqlite.ui.theme.PrimaryBlue
+import com.example.zensqlite.ui.theme.AppBackground
 import com.example.zensqlite.ui.theme.TextSecondary
 import com.example.zensqlite.ui.viewmodel.ProductViewModel
 import com.example.zensqlite.utils.ImageUtils
@@ -184,7 +184,7 @@ fun ProductFormScreen(
                     text = "Pilih Sumber Foto",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = DarkNavy
+                    color = DarkBlue
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
@@ -209,13 +209,13 @@ fun ProductFormScreen(
                     Box(
                         modifier = Modifier
                             .size(48.dp)
-                            .background(DarkNavy.copy(alpha = 0.08f), RoundedCornerShape(12.dp)),
+                            .background(DarkBlue.copy(alpha = 0.08f), RoundedCornerShape(12.dp)),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             Icons.Outlined.CameraAlt,
                             contentDescription = null,
-                            tint = DarkNavy,
+                            tint = DarkBlue,
                             modifier = Modifier.size(24.dp)
                         )
                     }
@@ -225,7 +225,7 @@ fun ProductFormScreen(
                             "Kamera",
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Medium,
-                            color = DarkNavy
+                            color = DarkBlue
                         )
                         Text(
                             "Ambil foto langsung",
@@ -252,13 +252,13 @@ fun ProductFormScreen(
                     Box(
                         modifier = Modifier
                             .size(48.dp)
-                            .background(CoralRed.copy(alpha = 0.08f), RoundedCornerShape(12.dp)),
+                            .background(PrimaryBlue.copy(alpha = 0.08f), RoundedCornerShape(12.dp)),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
                             Icons.Outlined.Image,
                             contentDescription = null,
-                            tint = CoralRed,
+                            tint = PrimaryBlue,
                             modifier = Modifier.size(24.dp)
                         )
                     }
@@ -268,7 +268,7 @@ fun ProductFormScreen(
                             "Galeri",
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Medium,
-                            color = DarkNavy
+                            color = DarkBlue
                         )
                         Text(
                             "Pilih dari galeri foto",
@@ -301,12 +301,12 @@ fun ProductFormScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White,
-                    titleContentColor = DarkNavy,
-                    navigationIconContentColor = DarkNavy
+                    titleContentColor = DarkBlue,
+                    navigationIconContentColor = DarkBlue
                 )
             )
         },
-        containerColor = LightBackground
+        containerColor = AppBackground
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -379,7 +379,7 @@ fun ProductFormScreen(
                 "Kode Produk",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = DarkNavy,
+                color = DarkBlue,
                 modifier = Modifier.padding(bottom = 6.dp)
             )
             OutlinedTextField(
@@ -403,7 +403,7 @@ fun ProductFormScreen(
                 "Nama Produk",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = DarkNavy,
+                color = DarkBlue,
                 modifier = Modifier.padding(bottom = 6.dp)
             )
             OutlinedTextField(
@@ -427,7 +427,7 @@ fun ProductFormScreen(
                 "Kategori",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = DarkNavy,
+                color = DarkBlue,
                 modifier = Modifier.padding(bottom = 6.dp)
             )
             ExposedDropdownMenuBox(
@@ -478,7 +478,7 @@ fun ProductFormScreen(
                         "Kuantitas",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
-                        color = DarkNavy,
+                        color = DarkBlue,
                         modifier = Modifier.padding(bottom = 6.dp)
                     )
                     OutlinedTextField(
@@ -504,7 +504,7 @@ fun ProductFormScreen(
                         "Harga (Rp)",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
-                        color = DarkNavy,
+                        color = DarkBlue,
                         modifier = Modifier.padding(bottom = 6.dp)
                     )
                     OutlinedTextField(
@@ -558,7 +558,7 @@ fun ProductFormScreen(
                     .fillMaxWidth()
                     .height(54.dp),
                 shape = RoundedCornerShape(14.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = DarkNavy),
+                colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue),
                 enabled = !uiState.isLoading
             ) {
                 if (uiState.isLoading) {
@@ -584,12 +584,12 @@ fun ProductFormScreen(
 
 @Composable
 private fun textFieldColors() = OutlinedTextFieldDefaults.colors(
-    focusedBorderColor = DarkNavy,
+    focusedBorderColor = PrimaryBlue,
     unfocusedBorderColor = Color(0xFFE5E7EB),
-    focusedLabelColor = DarkNavy,
+    focusedLabelColor = PrimaryBlue,
     focusedContainerColor = Color.White,
     unfocusedContainerColor = Color.White,
-    cursorColor = DarkNavy
+    cursorColor = PrimaryBlue
 )
 
 private val CircleShape = RoundedCornerShape(50)

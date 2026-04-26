@@ -60,10 +60,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.zensqlite.data.entity.ProductEntity
-import com.example.zensqlite.ui.theme.CoralRed
-import com.example.zensqlite.ui.theme.DarkNavy
-import com.example.zensqlite.ui.theme.LightBackground
-import com.example.zensqlite.ui.theme.RoyalBlue
+import com.example.zensqlite.ui.theme.DarkBlue
+import com.example.zensqlite.ui.theme.PrimaryBlue
+import com.example.zensqlite.ui.theme.LightBlue
+import com.example.zensqlite.ui.theme.AppBackground
+import com.example.zensqlite.ui.theme.ErrorRed
 import com.example.zensqlite.ui.theme.SuccessGreen
 import com.example.zensqlite.ui.theme.TextSecondary
 import com.example.zensqlite.ui.theme.WarningAmber
@@ -106,7 +107,7 @@ fun ProductDetailScreen(
                 Text(
                     "Hapus Produk",
                     fontWeight = FontWeight.SemiBold,
-                    color = DarkNavy
+                    color = DarkBlue
                 )
             },
             text = {
@@ -121,7 +122,7 @@ fun ProductDetailScreen(
                     showDeleteDialog = false
                     productViewModel.deleteProduct(product!!)
                 }) {
-                    Text("Hapus", color = CoralRed, fontWeight = FontWeight.SemiBold)
+                    Text("Hapus", color = ErrorRed, fontWeight = FontWeight.SemiBold)
                 }
             },
             dismissButton = {
@@ -151,12 +152,12 @@ fun ProductDetailScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White,
-                    titleContentColor = DarkNavy,
-                    navigationIconContentColor = DarkNavy
+                    titleContentColor = DarkBlue,
+                    navigationIconContentColor = DarkBlue
                 )
             )
         },
-        containerColor = LightBackground
+        containerColor = AppBackground
     ) { paddingValues ->
         if (product == null) {
             Box(
@@ -165,7 +166,7 @@ fun ProductDetailScreen(
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = DarkNavy)
+                CircularProgressIndicator(color = PrimaryBlue)
             }
         } else {
             val p = product!!
@@ -227,7 +228,7 @@ fun ProductDetailScreen(
                             text = p.name,
                             fontSize = 22.sp,
                             fontWeight = FontWeight.Bold,
-                            color = DarkNavy
+                            color = DarkBlue
                         )
 
                         Spacer(modifier = Modifier.height(8.dp))
@@ -235,7 +236,7 @@ fun ProductDetailScreen(
                         Box(
                             modifier = Modifier
                                 .background(
-                                    RoyalBlue.copy(alpha = 0.1f),
+                                    LightBlue.copy(alpha = 0.5f),
                                     RoundedCornerShape(8.dp)
                                 )
                                 .padding(horizontal = 12.dp, vertical = 4.dp)
@@ -243,7 +244,7 @@ fun ProductDetailScreen(
                             Text(
                                 text = p.category,
                                 fontSize = 13.sp,
-                                color = RoyalBlue,
+                                color = DarkBlue,
                                 fontWeight = FontWeight.Medium
                             )
                         }
@@ -255,7 +256,7 @@ fun ProductDetailScreen(
                             text = CurrencyUtils.formatRupiah(p.price),
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
-                            color = CoralRed
+                            color = PrimaryBlue
                         )
 
                         Spacer(modifier = Modifier.height(24.dp))
@@ -283,7 +284,7 @@ fun ProductDetailScreen(
                             value = "${p.quantity} unit",
                             valueColor = if (p.quantity > 10) SuccessGreen
                             else if (p.quantity > 0) WarningAmber
-                            else CoralRed
+                            else ErrorRed
                         )
 
                         Spacer(modifier = Modifier.height(14.dp))
@@ -326,7 +327,7 @@ fun ProductDetailScreen(
                             .height(50.dp),
                         shape = RoundedCornerShape(14.dp),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = CoralRed
+                            contentColor = ErrorRed
                         )
                     ) {
                         Icon(
@@ -348,7 +349,7 @@ fun ProductDetailScreen(
                             .height(50.dp),
                         shape = RoundedCornerShape(14.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = DarkNavy
+                            containerColor = PrimaryBlue
                         )
                     ) {
                         Icon(
@@ -375,7 +376,7 @@ private fun DetailInfoRow(
     icon: ImageVector,
     label: String,
     value: String,
-    valueColor: Color = DarkNavy
+    valueColor: Color = DarkBlue
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically
@@ -383,7 +384,7 @@ private fun DetailInfoRow(
         Box(
             modifier = Modifier
                 .size(40.dp)
-                .background(LightBackground, RoundedCornerShape(10.dp)),
+                .background(AppBackground, RoundedCornerShape(10.dp)),
             contentAlignment = Alignment.Center
         ) {
             Icon(
