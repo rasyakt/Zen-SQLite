@@ -190,22 +190,19 @@ fun HomeScreen(
                                 modifier = Modifier.weight(1f),
                                 title = "Produk",
                                 value = totalProducts.toString(),
-                                icon = Icons.Outlined.Widgets,
-                                iconTint = InfoBlue
+                                icon = Icons.Outlined.Widgets
                             )
                             SummaryCard(
                                 modifier = Modifier.weight(1f),
                                 title = "Stok",
                                 value = totalStock.toString(),
-                                icon = Icons.Outlined.Inventory,
-                                iconTint = SuccessGreen
+                                icon = Icons.Outlined.Inventory
                             )
                             SummaryCard(
                                 modifier = Modifier.weight(1f),
                                 title = "Nilai",
                                 value = CurrencyUtils.formatRupiahCompact(totalValue),
-                                icon = Icons.Outlined.AttachMoney,
-                                iconTint = WarningAmber
+                                icon = Icons.Outlined.AttachMoney
                             )
                         }
                     }
@@ -383,14 +380,13 @@ private fun SummaryCard(
     modifier: Modifier = Modifier,
     title: String,
     value: String,
-    icon: ImageVector,
-    iconTint: Color
+    icon: ImageVector
 ) {
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(14.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White.copy(alpha = 0.15f)
+            containerColor = Color.White.copy(alpha = 0.12f)
         ),
         elevation = CardDefaults.cardElevation(0.dp)
     ) {
@@ -400,10 +396,10 @@ private fun SummaryCard(
             Icon(
                 imageVector = icon,
                 contentDescription = null,
-                tint = iconTint,
-                modifier = Modifier.size(22.dp)
+                tint = Color.White.copy(alpha = 0.8f),
+                modifier = Modifier.size(20.dp)
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
                 text = value,
                 fontSize = 16.sp,
