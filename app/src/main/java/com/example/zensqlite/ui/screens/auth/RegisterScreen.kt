@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
@@ -112,6 +113,7 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .consumeWindowInsets(paddingValues)
         ) {
             // Gradient Header
             Box(
@@ -162,9 +164,9 @@ fun RegisterScreen(
                         color = Color.White,
                         shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)
                     )
-                    .padding(horizontal = 24.dp, vertical = 32.dp)
-                    .verticalScroll(rememberScrollState())
                     .imePadding()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 24.dp, vertical = 32.dp)
             ) {
                 AnimatedVisibility(
                     visible = true,
